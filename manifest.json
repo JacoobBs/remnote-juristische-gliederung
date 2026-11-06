@@ -5,10 +5,10 @@
   "author": "JacoobBs",
   "version": {
     "major": 0,
-    "minor": 1,
-    "patch": 2
+    "minor": 2,
+    "patch": 0
   },
-  "description": "Juristische Nummerierung je Ebene: A., I., 1., a), aa), (1). Für ausgewählte Dokumente und Ordner; mit unnummeriertem Fließtext.",
+  "description": "Gutachtenstil nur ab dem aktuellen Stichpunkt bis zum Ausschalten: A., I., 1., a), aa), (1). Normale Stichpunkte bleiben der Standard.",
   "repoUrl": "https://github.com/JacoobBs/remnote-juristische-gliederung",
   "enableOnMobile": false,
   "requestNative": false,
