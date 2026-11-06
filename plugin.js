@@ -115,7 +115,7 @@
       }
     });
     await plugin.app.registerCommand({id: 'gutachten-refresh', name: 'Gutachten: Nummerierung aktualisieren', action: () => refresh(plugin)});
-    await plugin.app.toast('Juristische Gliederung 0.1.1 gestartet. Die Gutachten-Befehle sind jetzt verfügbar.');
+    await plugin.app.toast('Juristische Gliederung gestartet. Die Gutachten-Befehle sind jetzt verfügbar.');
     for (const event of ['GlobalRemChanged','EditorTextEdited','GlobalOpenRem','URLChange','CurrentWindowTreeChange','StorageSyncedChange']) {
       if (!rn.AppEvents[event]) continue;
       const fn = () => schedule(plugin);

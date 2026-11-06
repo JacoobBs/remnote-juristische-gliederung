@@ -7,6 +7,7 @@ Persönliche RemNote-Erweiterung für die Ebenen **A. → I. → 1. → a) → a
 - Je Dokument oder Ordner einschalten; Dokumente in aktivierten Ordnern übernehmen die Gliederung.
 - Nummern werden aus der gespeicherten Hierarchie berechnet, unabhängig von sichtbaren Bildschirmzeilen.
 - Absätze lassen sich als unnummerierter Fließtext markieren.
+- Punkte unter leeren Zeilen oder Fließtext-Absätzen führen die Zählung der umgebenden Ebene fort, sodass keine Gliederungsnummer doppelt erscheint.
 - Die Originaltexte bleiben unverändert. Die Nummern sind eine Anzeige-Ergänzung und werden beim Kopieren oder Textexport nicht automatisch zu Text.
 
 ## Bedienung

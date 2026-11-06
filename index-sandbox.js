@@ -331,25 +331,26 @@ __p+='`),c}),s+=`';
   function calculate(nodes, rootId, paragraphs = {}) {
     const labels = new Map();
     const visited = new Set([rootId]);
-    function walk(parentId, depth) {
+    // Empty rows and prose paragraphs are transparent: their children share
+    // the surrounding counter instead of restarting it, so no label repeats.
+    function visit(parentId, depth, counter) {
       const parent = nodes.get(parentId);
       if (!parent) return;
-      let index = 0;
       for (const id of parent.children || []) {
         if (visited.has(id)) continue;
         visited.add(id);
         const node = nodes.get(id);
         if (!node) continue;
-        if (node.boundary) { walk(id, 0); continue; }
+        if (node.boundary) { visit(id, 0, { n: 0 }); continue; }
         if (node.skip) continue;
-        if (paragraphs[id]) { labels.set(id, ''); walk(id, depth); continue; }
-        if (!node.nonempty) { walk(id, depth); continue; }
-        const prefix = label(depth, ++index);
+        if (paragraphs[id]) { labels.set(id, ''); visit(id, depth, counter); continue; }
+        if (!node.nonempty) { visit(id, depth, counter); continue; }
+        const prefix = label(depth, ++counter.n);
         if (prefix !== null) labels.set(id, prefix);
-        walk(id, depth + 1);
+        visit(id, depth + 1, { n: 0 });
       }
     }
-    walk(rootId, 0);
+    visit(rootId, 0, { n: 0 });
     return labels;
   }
   function cssForLabels(labels) {
@@ -486,7 +487,7 @@ __p+='`),c}),s+=`';
       }
     });
     await plugin.app.registerCommand({id: 'gutachten-refresh', name: 'Gutachten: Nummerierung aktualisieren', action: () => refresh(plugin)});
-    await plugin.app.toast('Juristische Gliederung 0.1.1 gestartet. Die Gutachten-Befehle sind jetzt verfügbar.');
+    await plugin.app.toast('Juristische Gliederung gestartet. Die Gutachten-Befehle sind jetzt verfügbar.');
     for (const event of ['GlobalRemChanged','EditorTextEdited','GlobalOpenRem','URLChange','CurrentWindowTreeChange','StorageSyncedChange']) {
       if (!rn.AppEvents[event]) continue;
       const fn = () => schedule(plugin);

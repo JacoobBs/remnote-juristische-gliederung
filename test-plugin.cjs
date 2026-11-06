@@ -41,6 +41,23 @@ assert(!labels.has('doc1'));
 data.get('A').children.reverse();
 assert.equal(N.calculate(nodes(),'doc1',{prose:true}).get('I'),'II.');
 data.get('A').children.reverse();
+// Rows nested under empty or prose lines continue the surrounding counter
+// instead of restarting it — no duplicate labels like two "A." in one list.
+{
+  const transparent = new Map([
+    ['doc', {children:['x','blank','prose'], nonempty:true, boundary:true}],
+    ['x', {children:[], nonempty:true}],
+    ['blank', {children:['y'], nonempty:false}],
+    ['y', {children:[], nonempty:true}],
+    ['prose', {children:['z'], nonempty:true}],
+    ['z', {children:[], nonempty:true}],
+  ]);
+  const continued = N.calculate(transparent,'doc',{prose:true});
+  assert.equal(continued.get('x'),'A.');
+  assert.equal(continued.get('y'),'B.');
+  assert.equal(continued.get('prose'),'');
+  assert.equal(continued.get('z'),'C.');
+}
 
 let activate, deactivate, store = {}, paneId = 'doc1', focusedId = 'prose';
 const commands = new Map(), styles = new Map();
