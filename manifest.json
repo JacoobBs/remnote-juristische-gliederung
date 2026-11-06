@@ -1,0 +1,22 @@
+{
+  "manifestVersion": 1,
+  "id": "persoenliche-juristische-gliederung",
+  "name": "Juristische Gliederung",
+  "author": "JacoobBs",
+  "version": {
+    "major": 0,
+    "minor": 1,
+    "patch": 1
+  },
+  "description": "Juristische Nummerierung je Ebene: A., I., 1., a), aa), (1). Für ausgewählte Dokumente und Ordner; mit unnummeriertem Fließtext.",
+  "repoUrl": "https://github.com/JacoobBs/remnote-juristische-gliederung",
+  "enableOnMobile": false,
+  "requestNative": false,
+  "unlisted": true,
+  "requiredScopes": [
+    {
+      "type": "All",
+      "level": "Read"
+    }
+  ]
+}
